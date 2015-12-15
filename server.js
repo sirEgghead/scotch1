@@ -5,7 +5,7 @@ var morgan			= require('morgan');
 var bodyParser	= require('body-parser');
 var methodOverride	= require('method-override');
 
-mongoose.connect('mongodb://mongo.core.insaynelan.net');
+mongoose.connect(process.env.DB_1_PORT_27017_TCP_ADDR);
 
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
@@ -59,9 +59,9 @@ app.delete('/api/todos/:todo_id', function(req, res) {
 	});
 });
 
-app.get('*', function(req,res)){
+app.get('*', function(req,res){
   res.sendfile('./public/index.html');
-}
+});
 
 app.listen(8080);
 console.log("App listening on port 8080");
